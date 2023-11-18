@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load myfilter %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="alert alert-danger text-center p-3">
+        Candidate Detail
+    </h1>
+
+    <div class="row">
+        <div class="col-md-10 shadow p-5">
+            <p>Applicant ID: {{candidate.id}}</p>
+             <p><img src="{{candidate.profile_image.url}}" class="img-fluid img-thumbnail" width="150px" height="150px"></p>
+            <p>Name: {{candidate.name}}</p>
+            <p>Date of Birth: {{candidate.dob}}</p>
+            <p>Gender: {{candidate.gender}}</p>
+            <p>Address: {{candidate.locality}},  {{candidate.city}}, {{candidate.state}} - {{candidate.pin}}</p>
+            <p>Mobile Number: {{candidate.mobile}}</p>
+            <p>Email id: {{candidate.email}} </p>
+            <p>Preferred Job location: {{candidate.job_city|remove_special:"[]'"}}</p>
+            <p>Document: <a href="{{candidate.my_file.url}}">Download</a></p>
+            <div class="text-center">
+                <a href="/" class="btn btn-danger center">Back Home</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+

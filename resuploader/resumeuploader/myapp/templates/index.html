@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row">
+        <h1 class="alert alert-danger text-danger p-3 mt-3 text-center">Resume uploader</h1>
+        <div class="col-sm-6">
+            <form action="" method="post" enctype="multipart/form-data" class="shadow p-5">
+                {% csrf_token %}
+                    {% for fm in form %}
+                        <div class="form-group mb-3">
+                            {{fm.label_tag}}
+                            {{fm}}
+                            <small class="text-danger">
+                                {{fm.errors}}
+                            </small>
+                        </div>
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    {% if form.non_field_errors %}
+                        <p class="alert alert-danger py-3">
+                            {{error}}
+                        </p>
+                    {% endif %}
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <h4 class="text-center mb-5">List of Candidate</h4>
+                {% for candidate in candidates %}
+                    {{candidate.id}} <a href="{% url 'candidate' candidate.id %}">{{candidate.name}}</a><br>
+                        
+                {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
